@@ -27,3 +27,26 @@ public class ProductController : ControllerBase
         return products;
     }
 }
+
+
+/// example of a simple test class for the ProductController
+namespace APISession.Models
+{
+    public class  product 
+    {
+        
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+    }
+}
+ public ActionResult AddProduct([FromBody] product newProduct)
+{
+     if (newProduct == null || string.IsNullOrWhiteSpace(newProduct.Name))
+    {
+        return BadRequest("Invalid product data.");
+    }
+    // Add the new product to the list (in a real application, you would save it to a database)
+     products.Add(newProduct.Name);
+     return Ok(newProduct);
+} ])
