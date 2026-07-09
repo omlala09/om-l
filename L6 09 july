@@ -1,0 +1,29 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+app.MapControllers();
+
+app.Run();
+
+// Controller definition
+// In modern .NET, this can live in the same file or a separate file.
+[Route("api/[controller]")]
+[ApiController]
+public class ProductController : ControllerBase
+{
+    private static readonly List<string> products = new() { "Mobile", "CPU", "Page", "Speaker" };
+
+    [HttpGet]
+    public IEnumerable<string> GetProducts()
+    {
+        return products;
+    }
+}
